@@ -71,7 +71,9 @@ class MusicInfo(AudioInfo):
     def to_condition_attributes(self) -> ConditioningAttributes:
         out = ConditioningAttributes()
         for _field in fields(self):
-            key, value = getattr(self, _field.name)
+            # ИСПРАВЛЕННАЯ СТРОКА:
+            key, value = _field.name, getattr(self, _field.name)
+            
             if key == 'self_wav':
                 out.wav[key] = value
             elif key == 'joint_embed':
